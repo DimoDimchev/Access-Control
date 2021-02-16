@@ -31,13 +31,37 @@ class Reader:
             return self.card_id
 
 
-reader_test = Reader()
+class Controller:
+    def __init__(self, url_address):
+        self.url_address = url_address
+    
+    def card_accepted(self):
+        response = requests.post(self.url_address, data={"value": 1, "mode": "Simple"})
+        time.sleep(5)
+        response = requests.post(self.url_address, data={"value": 0, "mode": "Simple"})
+
+        return 1
+    
+    def card_unaccepted(self):
+        return 0
+
+
+# reads an ip address from a text file and saves it in a variable
+ip_data = open("ip_data.txt", "r")
+ip_to_use = str(ip_data.readline())
+
+# read all cards from a text file and add them to a list of card id's
+card_id_data = open("card_id_data.txt", "r")
+card_list = card_id_data.readlines()
+
+reader = Reader()
+controller = Controller(f"http://{ip_to_use}:8080/rest/output/1_01")
 
 while True:
-    card_id = reader_test.get_card_id()
-    if card_id == "6E536046010080FF":
-        # here will be the code that controls UniPy Neuron S103
-        url = "http://192.168.0.53:8080/rest/output/1_01"
-        response = requests.post(url, data={"value": 1, "mode": "Simple"})
-        time.sleep(5)
-        response = requests.post(url, data={"value": 0, "mode": "Simple"})
+    card_id = reader.get_card_id()
+    if card_id in card_list:
+        print(controller.card_accepted())
+    elif card_id not in card_list and card_id is not None:
+        print(controller.card_unaccepted())
+        
+        
