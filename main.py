@@ -9,8 +9,8 @@ def check_if_closed():
 
 
 def get_card_id():
-    card_id_size = ser.in_waiting
-    read_data = ser.read(size=card_id_size)
+    # card_id_size = ser.in_waiting
+    read_data = ser.read(size=19)
 
     # decodes the bytes to strings
     card_id = str(read_data, 'utf-8')
@@ -25,7 +25,7 @@ def get_card_id():
 
 
 # opens port upon declaration
-ser = serial.Serial('/dev/cu.usbserial-A703G1E6', baudrate=9600, timeout=0.03)
+ser = serial.Serial('/dev/cu.usbserial-A703G1E6', baudrate=9600, timeout=0.1)
 
 # while loop that will allow for the program to repeat itself an indefinite amount
 while True:
