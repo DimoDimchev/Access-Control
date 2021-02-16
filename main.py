@@ -41,9 +41,6 @@ class Controller:
         response = requests.post(self.url_address, data={"value": 0, "mode": "Simple"})
 
         return 1
-    
-    def card_unaccepted(self):
-        return 0
 
 
 # reads an ip address from a text file and saves it in a variable
@@ -62,6 +59,6 @@ while True:
     if card_id in card_list:
         print(controller.card_accepted())
     elif card_id not in card_list and card_id is not None:
-        print(controller.card_unaccepted())
+        print("0")
         
         
