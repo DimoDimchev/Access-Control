@@ -2,16 +2,19 @@
 # -*- coding: <utf-8> -*-
 
 import time
+import yaml
 from controller import Controller
 from reader import Reader
 
-# reads an ip address from a text file and saves it in a variable
-ip_data = open("ip_data.txt", "r")
-ip_to_use = str(ip_data.readline())
+# opens data.yaml and parses it
+data_yaml = open("data.yaml", "r")
+parsed_data = yaml.load(data_yaml, Loader=yaml.FullLoader)
 
-# read all cards from a text file and add them to a list of card id's
-card_id_data = open("card_id_data.txt", "r")
-card_list = card_id_data.readlines()
+# reads an ip address from the yaml file and saves it in a variable
+ip_to_use = parsed_data.get("ip_address")
+
+# read all cards from a yaml file and add them to a list of card id's
+card_list = parsed_data.get("cards_with_access")
 
 controller = Controller(ip_to_use)
 reader = Reader()
