@@ -1,19 +1,23 @@
 #!/~/.pyenv/versions/3.9.1/bin/python
 # -*- coding: <utf-8> -*-
 
+# imports serial module
 import serial
 
 class Reader:
     def __init__(self):
+        # declares and opens the port
         self.ser = serial.Serial('/dev/cu.usbserial-A703G1E6', baudrate=9600, timeout=0.1)
         self.card_id = None
     
 
+    # checks if the port is open and if it is - closes it
     def close(self):
         if self.ser.is_open():
             self.ser.close()
         
 
+    # reads the current card's id
     def get_card_id(self):
         card_id_size = self.ser.in_waiting
 
