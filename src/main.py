@@ -19,7 +19,7 @@ def main():
     # read all cards from a yaml file and add them to a list of card ids
     card_list = parsed_data.get("cards_with_access")
 
-    controller = Controller(ip_to_use)
+    controller = Controller(ip_to_use, 1, 1)
     reader = Reader()
 
     # while loop to keep the program running indefinetely
