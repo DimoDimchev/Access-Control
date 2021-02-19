@@ -5,24 +5,25 @@
 import requests
 
 class Controller:
-    def __init__(self, ip, first_index, second_index):
+    def __init__(self, ip, major_index, minor_index, network_port):
         self.__ip_address = str(ip)
         self.__digital_output = "rest/output/"
         self.__digital_input = "rest/input/"
-        self.first_index = int(first_index)
-        self.second_index = int(second_index)
+        self.network_port = network_port
+        self.major_index = int(major_index)
+        self.minor_index = int(minor_index)
 
     # gets the circuit that is needed to be used
     def get_circuit(self):
         if self.second_index < 10:
-            circuit = f"{self.first_index}_0{self.second_index}"
+            circuit = f"{self.major_index}_0{self.minor_index}"
         else:
-            circuit = f"{self.first_index}_{self.second_index}"
+            circuit = f"{self.major_index}_{self.minor_index}"
         return circuit
 
     # constructs the uri
     def construct_uri(self):
-        uri = f"http://{self.__ip_address}:8080/{self.__digital_output}{Controller.get_circuit(self)}"
+        uri = f"http://{self.__ip_address}:{self.network_port}/{self.__digital_output}{Controller.get_circuit(self)}"
         return uri 
 
     # turns switch on
