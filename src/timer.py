@@ -1,7 +1,6 @@
 import time
 
 class Timer:
-
     def __init__(self, expiration_time):
         self.expiration_time = expiration_time
         # sets the starting time

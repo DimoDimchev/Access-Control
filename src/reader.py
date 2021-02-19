@@ -11,13 +11,11 @@ class Reader:
         self.ser = serial.Serial(str(self.port), baudrate=9600, timeout=0.1)
         self.card_id = None
     
-
     # checks if the port is open and if it is - closes it
     def close(self):
         if self.ser.is_open():
             self.ser.close()
         
-
     # reads the current card's id
     def get_card_id(self):
         card_id_size = self.ser.in_waiting
