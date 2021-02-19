@@ -14,7 +14,7 @@ def main():
     parsed_data = yaml.load(data_yaml, Loader=yaml.FullLoader)
 
     # read an ip address from the data.yaml file and save it in a variable
-    ip_to_use = parsed_data.get("ip_address")
+    ip_to_use = str(parsed_data.get("ip_address"))
 
     # read all cards from the data.yaml file and save them to a list
     card_list = parsed_data.get("cards_with_access")

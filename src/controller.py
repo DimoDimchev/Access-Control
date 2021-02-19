@@ -6,12 +6,12 @@ import requests
 
 class Controller:
     def __init__(self, ip, major_index, minor_index, network_port):
-        self.__ip_address = str(ip)
+        self.__ip_address = ip
         self.__digital_output = "rest/output/"
         self.__digital_input = "rest/input/"
-        self.network_port = network_port
-        self.major_index = int(major_index)
-        self.minor_index = int(minor_index)
+        self.__network_port = network_port
+        self.major_index = major_index
+        self.minor_index = minor_index
 
     # gets the circuit that is needed to be used
     def get_circuit(self):
@@ -23,7 +23,7 @@ class Controller:
 
     # constructs the uri
     def construct_uri(self):
-        uri = f"http://{self.__ip_address}:{self.network_port}/{self.__digital_output}{Controller.get_circuit(self)}"
+        uri = f"http://{self.__ip_address}:{self.__network_port}/{self.__digital_output}{Controller.get_circuit(self)}"
         return uri 
 
     # turns switch on
