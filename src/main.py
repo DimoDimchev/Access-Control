@@ -11,7 +11,7 @@ from timer import Timer
 def main():
     # opens data.yaml and parses it
     data_yaml = open("data/data.yaml", "r")
-    parsed_data = yaml.load(data_yaml, Loader=yaml.FullLoader)
+    parsed_data = yaml.load(data_yaml, Loader=yaml.SafeLoader)
 
     # read an ip address from the data.yaml file and save it in a variable
     ip_to_use = str(parsed_data.get("ip_address"))
