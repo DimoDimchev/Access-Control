@@ -34,7 +34,6 @@ def main():
             # checks if the required time has elapsed
             if timer.update():
                 controller.turn_switch_off()
-                break
         elif card_id not in card_list and card_id is not None:
             print("0")
 
