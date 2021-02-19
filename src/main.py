@@ -1,12 +1,12 @@
 #!/~/.pyenv/versions/3.9.1/bin/python
 # -*- coding: <utf-8> -*-
 
-# imports time and yaml modules
-import time
+# imports the yaml module
 import yaml
-# imports Controller and Reader class from controller.py and reader.py
+# imports Controller, Timer and Reader class from controller.py and reader.py
 from controller import Controller
 from reader import Reader
+from timer import Timer
 
 def main():
     # opens data.yaml and parses it
@@ -21,14 +21,17 @@ def main():
 
     controller = Controller(ip_to_use, 1, 1)
     reader = Reader()
+    timer = Timer(5)
 
     # while loop to keep the program running indefinetely
     while True:
         card_id = reader.get_card_id()
         if card_id in card_list:
             controller.turn_switch_on()
-            time.sleep(5)
-            controller.turn_switch_off()
+            # checks if the required time has elapsed
+            if timer.update():
+                controller.turn_switch_off()
+                break
         elif card_id not in card_list and card_id is not None:
             print("0")
 
