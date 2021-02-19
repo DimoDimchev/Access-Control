@@ -10,7 +10,7 @@ The project is written entirely in the Python programming language using differe
 All of the information needed for the program to work can be adjusted in the `data.yaml` file. There you will find fields to enter the IP Adress of the controller, the network port that will be used, the major and minor indices of the circuit you want to run the program on, the port of the controller itself and a list of card IDs that have granted access.
 
 The data.yaml will look something like this:
-```
+```json//
 ip_address: "enter.your.ip.here"
 cards_with_access: ["example_card_id_1", "example_card_id_2"]
 controller_port: "this/is/your_port"
