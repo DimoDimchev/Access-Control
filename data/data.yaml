@@ -2,4 +2,8 @@
 
 ip_address: "192.168.0.53"
 cards_with_access: ["6E536046010080FF"]
-port: "/dev/cu.usbserial-A703G1E6"
+controller_port: "/dev/cu.usbserial-A703G1E6"
+network_port: 8080
+major_index: 1
+minor_index: 1
+expiration_time: 5
