@@ -5,9 +5,10 @@
 import serial
 
 class Reader:
-    def __init__(self):
+    def __init__(self, port):
         # declares and opens the port
-        self.ser = serial.Serial('/dev/cu.usbserial-A703G1E6', baudrate=9600, timeout=0.1)
+        self.port = port
+        self.ser = serial.Serial(str(self.port), baudrate=9600, timeout=0.1)
         self.card_id = None
     
 
