@@ -13,14 +13,17 @@ def main():
     data_yaml = open("data/data.yaml", "r")
     parsed_data = yaml.load(data_yaml, Loader=yaml.FullLoader)
 
-    # reads an ip address from the yaml file and saves it in a variable
+    # read an ip address from the data.yaml file and save it in a variable
     ip_to_use = parsed_data.get("ip_address")
 
-    # read all cards from a yaml file and add them to a list of card ids
+    # read all cards from the data.yaml file and save them to a list
     card_list = parsed_data.get("cards_with_access")
 
+    # read the port that will be used from the data.yaml file and save it in a variable
+    port_to_use = parsed_data.get("port")
+
     controller = Controller(ip_to_use, 1, 1)
-    reader = Reader()
+    reader = Reader(port_to_use)
     timer = Timer(5)
 
     # while loop to keep the program running indefinetely
