@@ -11,7 +11,7 @@ All of the information needed for the program to work can be adjusted in the `da
 
 The data.yaml will look something like this:
 ```json//
-ip_address: "enter.your.ip.here"
+ip_address: "controller.ip.goes.here"
 cards_with_access: ["example_card_id_1", "example_card_id_2"]
 controller_port: "this/is/your_port"
 network_port: 8080
